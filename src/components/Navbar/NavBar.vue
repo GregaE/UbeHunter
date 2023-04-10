@@ -7,7 +7,7 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 nav {
   position: sticky;
   width: 100%;

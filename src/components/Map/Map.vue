@@ -1,14 +1,10 @@
 <template>
   <main class="w-screen h-screen">
-    <mapbox-search-box
-      :access-token="state.map.accessToken"
-      proximity="0,0"
-    />
     <v-map
       class="w-full h-full" 
       :options="state.map"
       @loaded="onMapLoaded"
-      @click="handleClick"
+      @click="$emit('openSidebar')"
     >
       <template v-if="loaded">
         <v-marker
@@ -31,10 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, ref } from "vue";
+import { defineEmits, reactive, computed, ref } from "vue";
 import { VMap, VMarker } from "v-mapbox";
-import MapboxSearchBox from "mapbox-gl";
-import createMarker from '../../utils/createMarker';
+import { useMarkerStore } from '../../store/markerStore'
+
+defineEmits<{
+  (e: 'openSidebar'): void;
+}>();
 
 const state = reactive({
   ui: {
@@ -59,39 +58,14 @@ const state = reactive({
 
 const loaded = computed(() => state.ui.loaded);
 
-const markers = ref([
-  {
-    options: { color: "red", draggable: true },
-    coordinates: [73.858, 18.5204],
-    popup: {
-      options: {
-        closeButton: false,
-        closeOnClick: true,
-        closeOnMove: true,
-      },
-      content: "ABC",
-    },
-  },
-  {
-    options: { color: "indigo", draggable: false },
-    coordinates: [73.8567, 18.5514],
-    popup: {
-      options: {
-        closeButton: true,
-        closeOnClick: false,
-        closeOnMove: false,
-      },
-      content: "XYZ",
-    },
-  },
-]);
+const { markers } = useMarkerStore();
 
-const handleClick = (e: any) => {
-  if (e.lngLat) {
-    console.log(e)
-    markers.value = [...markers.value, createMarker(e.lngLat)];
-  }
-};
+// const handleClick = (e: any) => {
+//   if (e.lngLat) {
+//     console.log(e)
+//     markers.value = [...markers.value, createMarker(e.lngLat)];
+//   }
+// };
 
 function onMapLoaded(map: any) {
   [
@@ -121,7 +95,7 @@ function onMapLoaded(map: any) {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 html,
 body {
   margin: 0;
