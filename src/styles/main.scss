@@ -1,0 +1,79 @@
+@import './reset';
+
+:root {
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-ube-base: #8878c3;
+  --clr-ube-lighter-1: #9c8dcd;
+  --clr-ube-lighter-2: #b0a3d7;
+  --clr-ube-lighter-3: #c4b9e1;
+  --clr-ube-lighter-4: #d8d0eb;
+  --clr-ube-lighter-5: #ebe7f5;
+  --clr-ube-darker-1: #70639f;
+  --clr-ube-darker-2: #594f7d;
+  --clr-ube-darker-3: #433c5d;
+  --clr-ube-darker-4: #2f2a3e;
+  --clr-ube-darker-5: #1b1822;
+  --clr-ube-monochromatic-1: #6f60a9;
+  --clr-ube-monochromatic-2: #7768b1;
+  --clr-ube-monochromatic-3: #7f70ba;
+  --clr-ube-monochromatic-4: #8878c3;
+  --clr-ube-monochromatic-5: #9180cc;
+  --clr-ube-monochromatic-6: #9988d5;
+  --clr-ube-monochromatic-6: #a291de;
+  --main: 'Poppins', sans-serif;
+  --border-radius: 5px;
+}
+
+.theme-default {
+  --text-primary: var(--clr-ube-darker-5);
+  --text-secondary: var(--clr-white);
+  --bg-primary: var(--clr-ube-lighter-4);
+  --bg-secondary: var(--clr-ube-darker-2);
+  --danger: var(--clr-ube-monochromatic-1);
+}
+
+html {
+  font-family: var(--main);
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+
+input[type=text] {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-radius: var(--border-radius);
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.8rem;
+  border: none;
+  width: 10rem;
+
+  &:focus {
+    outline: none;
+    -webkit-box-shadow: 0 0 5px var(--text-secondary);
+    box-shadow: 0 0 5px var(--text-secondary);
+  }
+}
+
+// ::-webkit-scrollbar {
+//   width: 1.2rem;
+// }
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1.25px dimgrey;
+  background: var(--text-primary);
+  border-radius: 2.5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: var(--border-radius);
+}
