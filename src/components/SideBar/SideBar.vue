@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <form
+    <div
       v-if="showModel"
       class="sidebar"
     >
@@ -11,9 +11,9 @@
           Name
           <input >
         </label>
-        <button>Save</button>
+        <button @click.prevent>Save</button>
       </form>
-    </form>
+    </div>
   </transition>
 </template>
 
@@ -68,6 +68,33 @@ form {
     display: flex;
     flex-direction: column;
     align-items: start;
+  }
+  button {
+    background-color: var(--btn-primary);
+    border-radius: 2.4rem;
+    border-color: var(--bg-primary);
+    border-style: hidden;
+    width:fit-content;
+    height: auto;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    &:hover {
+      background-color: var(--btn-secondary)
+    }
+    &:active {
+      background-color: var(--btn-secondary);
+      box-shadow: 0 3px 5px 0;
+      box-shadow: var(--btn-secondary);
+    }
   }
 }
 </style>
